@@ -115,7 +115,13 @@ syscall(struct trapframe *tf)
                 panic("Can't continue further until sys_exit() is implemented");
 
 	    /* Add stuff here */
-
+		case SYS_encode:
+			err = encode(tf->tf_a0,tf->tf_a1,tf->tf_a2,tf->tf_a3);
+			break;
+		case SYS_checksum:
+			err = checksum(tf->tf_a0,tf->tf_a1);
+			retval = 0;
+			break;
 	    default:
 		kprintf("Unknown syscall %d\n", callno);
 		err = ENOSYS;

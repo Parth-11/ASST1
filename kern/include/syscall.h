@@ -58,5 +58,7 @@ __DEAD void enter_new_process(int argc, userptr_t argv, userptr_t env,
 
 int sys_reboot(int code);
 int sys___time(userptr_t user_seconds, userptr_t user_nanoseconds);
+int encode(int op_id,int argument,int box_id1,int box_id2);
+int checksum(int op_id,int argument);
 
 #endif /* _SYSCALL_H_ */

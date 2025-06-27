@@ -198,7 +198,8 @@
 //#define SYS___sysctl   120
 
 //                              -- Non-standard: encoder --
-
+#define SYS_encode       121
+#define SYS_checksum     122
 /*CALLEND*/
 
 

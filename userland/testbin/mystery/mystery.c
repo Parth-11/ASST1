@@ -33,7 +33,7 @@ test(void)
 			/* Un-comment these once encode and checksum exist. */
 			x = encode(ENCODE_SHIFTS, x, -1, -1);
 		}
-		// checksum(CHECKSUM_MYSTERY, x);
+		checksum(CHECKSUM_MYSTERY, x);
 		message2[i] = ((char) x);
 	}
 
