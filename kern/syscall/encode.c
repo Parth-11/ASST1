@@ -31,7 +31,7 @@ int encode_system_setup(){
 
 /* implement encode and checksum here */
 
-int encode(int op_id,int argument,int box_id1,int box_id2){
+int sys_encode(int op_id,int argument,int box_id1,int box_id2,int *retval){
 	struct encode_device *dev = get_encode_device();
 
 	if(dev == NULL)
@@ -48,7 +48,8 @@ int encode(int op_id,int argument,int box_id1,int box_id2){
 				if(box_id1!=-1 || box_id2!=-1)
 					return EINVAL;
 				result = dev->encode_op(op_id,argument,NULL);
-				return result;
+				*retval = result;
+				return 0;
 			}
 
 			int num_boxes = dev->num_enc_boxes;
@@ -65,13 +66,13 @@ int encode(int op_id,int argument,int box_id1,int box_id2){
 			boxes->box_id2 = box_id2;
 
 			result = dev->encode_op(op_id,argument,boxes);
-
+			*retval = result;
 			kfree(boxes);
 
-			return result;
+			return 0;
 }
 
-int checksum(int op_id,int argument){
+int sys_checksum(int op_id,int argument){
 	struct encode_device *device = get_encode_device();
 	if(device == NULL)
 		return ENODEV;

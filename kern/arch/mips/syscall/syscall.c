@@ -116,10 +116,10 @@ syscall(struct trapframe *tf)
 
 	    /* Add stuff here */
 		case SYS_encode:
-			err = encode(tf->tf_a0,tf->tf_a1,tf->tf_a2,tf->tf_a3);
+			err = sys_encode(tf->tf_a0,tf->tf_a1,tf->tf_a2,tf->tf_a3,&retval);
 			break;
 		case SYS_checksum:
-			err = checksum(tf->tf_a0,tf->tf_a1);
+			err = sys_checksum(tf->tf_a0,tf->tf_a1);
 			retval = 0;
 			break;
 	    default:
